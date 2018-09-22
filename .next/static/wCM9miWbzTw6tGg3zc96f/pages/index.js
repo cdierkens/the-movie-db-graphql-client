@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{237:function(n,e,t){__NEXT_REGISTER_PAGE("/",function(){return n.exports=t(238),{page:n.exports.default}})},238:function(n,e,t){"use strict";t.r(e);var a=t(0),u=t.n(a),r=t(58);e.default=function(){return u.a.createElement(r.a,null,u.a.createElement("h1",null,"Landing"))}}},[[237,1,0]]]);

@@ -1,15 +1,24 @@
-import Layout from '../components/Layout.js'
+import Layout from '../components/Layout'
 import withData from '../components/Apollo'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import Image from '../components/Image'
 
-function MovieList({ data: { error, movies }}) {
+function MovieList({ loading, error, data: { movies }}) {
+    if (loading || !movies) {
+        return <div>Loading ...</div>
+    }
+
+    if (error) {
+        return <div>{error.message}</div>
+    }
+
     return (
         <div>
             {movies.map(movie => (
-                <div className="flex">
+                <div className="flex" key={movie.id}>
                     <div>
-                        <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
+                        <Image path={movie.poster_path} />
                     </div>
                     <div>
                         <h2>{movie.title}</h2>
@@ -41,7 +50,7 @@ const starWars = gql`{
 
 const Movies = graphql(starWars, {
     props: ({ data }) => ({
-      data,
+      data
     })
   })(MovieList)
   
