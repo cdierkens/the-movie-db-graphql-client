@@ -1,0 +1,67 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "external \"react\"": 0,
+      "external \"styled-jsx/style\"": 1,
+      "external \"next/link\"": 2,
+      "node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!components/Layout.js 5d40073f533dc07a241e4db5cf48bfab": 3,
+      "external \"next-apollo\"": 4,
+      "external \"apollo-link-http\"": 5,
+      "external \"react-apollo\"": 6,
+      "external \"graphql-tag\"": 7,
+      "multi ./pages/index.js": 8,
+      "node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!pages/index.js": 9,
+      "multi ./pages/movies.js": 10,
+      "multi node_modules/next/dist/pages/_app.js": 11,
+      "node_modules/next/dist/pages/_app.js": 12,
+      "external \"next/app\"": 13,
+      "multi node_modules/next/dist/pages/_error.js": 14,
+      "node_modules/next/dist/pages/_error.js": 15,
+      "external \"next/error\"": 16,
+      "multi node_modules/next/dist/pages/_document.js": 17,
+      "node_modules/next/dist/pages/_document.js": 18,
+      "external \"next/document\"": 19,
+      "node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!pages/movies.js 6845db7d44f2c23e089a5ee34c14dcc3": 20
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10,
+      "11": 11,
+      "12": 12,
+      "13": 13,
+      "14": 14,
+      "15": 15,
+      "16": 16,
+      "17": 17,
+      "18": 18,
+      "19": 19,
+      "20": 20
+    }
+  },
+  "chunks": {
+    "byName": {
+      "static/wCM9miWbzTw6tGg3zc96f/pages/index.js": 0,
+      "static/wCM9miWbzTw6tGg3zc96f/pages/movies.js": 1,
+      "static/wCM9miWbzTw6tGg3zc96f/pages/_app.js": 2,
+      "static/wCM9miWbzTw6tGg3zc96f/pages/_error.js": 3,
+      "static/wCM9miWbzTw6tGg3zc96f/pages/_document.js": 4
+    },
+    "bySource": {},
+    "usedIds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}
