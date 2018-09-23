@@ -1,61 +1,52 @@
 import Layout from '../components/Layout'
 import withData from '../components/Apollo'
-import { graphql } from 'react-apollo'
+import { Query } from "react-apollo"
 import gql from 'graphql-tag'
 import Image from '../components/Image'
 
-function MovieList({ loading, error, data: { movies }}) {
-    if (loading || !movies) {
-        return <div>Loading ...</div>
-    }
+const MOVIES_QUERY = gql`
+    query movies($query: String!) {
+        movies(query: $query) {
+            id
+            title
+            overview
+            poster_path
+        }
+    } 
+`
 
-    if (error) {
-        return <div>{error.message}</div>
-    }
+const Movies = (props) => (
+    <Query query={MOVIES_QUERY} variables={{ query: props.movie }}>
+        {({ loading, error, data }) => {
+            if (loading) return "Loading...";
+            if (error) return `Error! ${error.message}`;
 
-    return (
-        <div>
-            {movies.map(movie => (
-                <div className="flex" key={movie.id}>
-                    <div>
-                        <Image path={movie.poster_path} />
-                    </div>
-                    <div>
-                        <h2>{movie.title}</h2>
-                        <p>{movie.overview}</p>
-                    </div>
+            return (
+                <div>
+                    {data.movies.map(movie => (
+                        <div className="flex" key={movie.id}>
+                            <div>
+                                <Image path={movie.poster_path} />
+                            </div>
+                            <div>
+                                <h2>{movie.title}</h2>
+                                <p>{movie.overview}</p>
+                            </div>
+                        </div>
+                    ))}
+                    <style jsx>{`
+                        .flex {
+                            display: flex;
+                        }
+                    `}</style>
                 </div>
-            ))}
-            <style jsx>{`
-                .flex {
-                    display: flex;
-                }
-
-                img {
-                    margin: 10px;
-                }
-            `}</style>
-        </div>
-    )
-}
-
-const starWars = gql`{
-    movies(query: "Star Wars") {
-        id
-        title
-        overview,
-        poster_path
-    }
-}`
-
-const Movies = graphql(starWars, {
-    props: ({ data }) => ({
-      data
-    })
-  })(MovieList)
+            )
+        }}
+    </Query>
+)
   
 export default withData(() => (
     <Layout>
-       <Movies></Movies>
+       <Movies movie="Indiana Jones"></Movies>
     </Layout>
 ))
