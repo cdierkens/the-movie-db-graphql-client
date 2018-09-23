@@ -1,52 +1,34 @@
 import Layout from '../components/Layout'
 import withData from '../components/Apollo'
-import { Query } from "react-apollo"
-import gql from 'graphql-tag'
-import Image from '../components/Image'
+import Movies from '../components/Movies'
+import { debounce } from 'lodash'
 
-const MOVIES_QUERY = gql`
-    query movies($query: String!) {
-        movies(query: $query) {
-            id
-            title
-            overview
-            poster_path
-        }
-    } 
-`
+class MoviesPage extends React.Component {
+    state = {
+        query: "Star Wars",
+        input: "Star Wars"
+    }
 
-const Movies = (props) => (
-    <Query query={MOVIES_QUERY} variables={{ query: props.movie }}>
-        {({ loading, error, data }) => {
-            if (loading) return "Loading...";
-            if (error) return `Error! ${error.message}`;
+    changeQueryDebounced = debounce((event) => {
+        this.setState({
+            query: event.target.value
+        })
+    }, 500)
 
-            return (
-                <div>
-                    {data.movies.map(movie => (
-                        <div className="flex" key={movie.id}>
-                            <div>
-                                <Image path={movie.poster_path} />
-                            </div>
-                            <div>
-                                <h2>{movie.title}</h2>
-                                <p>{movie.overview}</p>
-                            </div>
-                        </div>
-                    ))}
-                    <style jsx>{`
-                        .flex {
-                            display: flex;
-                        }
-                    `}</style>
-                </div>
-            )
-        }}
-    </Query>
-)
-  
-export default withData(() => (
-    <Layout>
-       <Movies movie="Indiana Jones"></Movies>
-    </Layout>
-))
+    onQueryChange = (event) => {
+        this.setState({
+            input: event.target.value
+        })
+        event.persist()
+        this.changeQueryDebounced(event)
+    }   
+
+    render = () => (
+        <Layout>
+            <input type="text" value={this.state.input} onChange={this.onQueryChange} />
+            <Movies query={this.state.query}></Movies>
+        </Layout>
+    )
+}
+
+export default withData(MoviesPage)

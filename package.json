@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "graphql-tag": "^2.9.2",
+    "lodash": "^4.17.11",
     "next": "^7.0.0",
     "next-apollo": "^2.0.0",
     "react": "^16.5.2",
